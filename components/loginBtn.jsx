@@ -1,6 +1,8 @@
 import React from 'react'
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 import { FirebaseApp } from '../services/firebase'
+import { authUser } from '../Api/auth'
+import { toast } from 'react-toastify'
 
 
 const LoginBtn = () => {
@@ -11,27 +13,29 @@ const LoginBtn = () => {
   const handleLoginBtnClick = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result)
-        const token = credential.accessToken
-        // The signed-in user info.
         const user = result.user
-        // ...
 
-        console.log(user.displayName);
-        console.log(user.email);
+        authUser(user.displayName, user.email, user.photoURL)
+          .then(res => {
+            console.log(res)
+          })
+          .catch(err => {
+            console.log(err)
+          })
 
       }).catch((error) => {
-      // Handle Errors here.
       const errorCode = error.code
       const errorMessage = error.message
       // The email of the user's account used.
       const email = error.customData.email
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error)
+
+      toast.error(errorMessage)
       // ...
     })
   }
+
 
   return (
     <button onClick={handleLoginBtnClick}>
