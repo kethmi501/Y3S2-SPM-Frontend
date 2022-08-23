@@ -1,46 +1,79 @@
-import React from 'react'
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
+import React, { useEffect } from 'react'
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { FirebaseApp } from '../services/firebase'
-import { authUser } from '../Api/auth'
+import { authUser, checkUser } from '../Api/auth'
 import { toast } from 'react-toastify'
+import { useSelector, useDispatch } from 'react-redux'
+import { login } from '../store/auth/authSlice'
 
+import { FcGoogle } from 'react-icons/fc'
+import { useLocalStorage } from '@mantine/hooks'
 
 const LoginBtn = () => {
+  const [localStorageToken, setLocalStorageToken] = useLocalStorage({ key: 'token', defaultValue: null })
 
   const auth = getAuth(FirebaseApp)
   const provider = new GoogleAuthProvider()
 
+  const user = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (localStorageToken) {
+      // TODO check is token valids
+    }
+
+  }, [])
+
+
   const handleLoginBtnClick = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        const user = result.user
+        return result.user
 
+      })
+      .then((user) => {
         authUser(user.displayName, user.email, user.photoURL)
           .then(res => {
-            console.log(res)
+            dispatch(login(res))
+            setLocalStorageToken(res.token)
+
+            toast.success('Login successful')
           })
           .catch(err => {
             console.log(err)
           })
+      })
+      .catch((error) => {
+        const errorCode = error.code
+        const errorMessage = error.message
+        // The email of the user's account used.
+        const email = error.customData.email
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error)
 
-      }).catch((error) => {
-      const errorCode = error.code
-      const errorMessage = error.message
-      // The email of the user's account used.
-      const email = error.customData.email
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error)
-
-      toast.error(errorMessage)
-      // ...
-    })
+        toast.error(errorMessage)
+        // ...
+      })
   }
 
 
+  const testFunc = () => {
+    checkUser()
+  }
+
   return (
-    <button onClick={handleLoginBtnClick}>
-      Login with Google
-    </button>
+    <div>
+      <button
+        className={`login-btn ${user.isAuthenticated ? 'hide' : ''}`}
+        onClick={handleLoginBtnClick}>
+        <FcGoogle />
+        Login with Google
+      </button>
+      <button onClick={testFunc}>
+        TEST
+      </button>
+    </div>
   )
 }
 
