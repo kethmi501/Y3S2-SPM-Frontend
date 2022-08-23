@@ -14,9 +14,17 @@
     "@mantine/core": "^5.1.4",
     "@mantine/hooks": "^5.1.4",
     "@mantine/next": "^5.1.4",
+    "@reduxjs/toolkit": "^1.8.4",
+    "axios": "^0.27.2",
+    "firebase": "^9.9.2",
     "next": "12.2.5",
+    "next-http-proxy-middleware": "^1.2.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-icons": "^4.4.0",
+    "react-redux": "^8.0.2",
+    "react-toastify": "^9.0.8",
+    "redux": "^4.2.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.8",
