@@ -20,7 +20,7 @@ const AddAnimal = () => {
 
     return (
         <div className='px-4 py-8 sm:px-6 sm:py-12 md:px-8 md:py-16 lg:px-10 lg:py-20 bg-white'>
-            <div className='flex flex-col lg:flex-row w-full gap-5 md:gap-4'>
+            <div className='flex flex-col lg:flex-row w-full gap-5 lg:gap-4'>
                 <Image src={'https://images.pexels.com/photos/247502/pexels-photo-247502.jpeg?auto=compress&cs=tinysrgb&w=600'} width={500} height={540} className='rows-span-2 md:cols-span-1 object-cover rounded-lg shadow-lg' />
 
                 <div className='pt-2 md:pt-8 w-full'>
