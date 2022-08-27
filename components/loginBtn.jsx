@@ -10,7 +10,22 @@ import { FcGoogle } from 'react-icons/fc'
 import { useLocalStorage } from '@mantine/hooks'
 
 const LoginBtn = () => {
-  const [localStorageToken, setLocalStorageToken] = useLocalStorage({ key: 'token', defaultValue: null })
+  const [localStorageToken, setLocalStorageToken] = useLocalStorage({
+    key: 'token',
+    defaultValue: null,
+    serialize: (value) => {
+      /* return value serialized to string */
+      if (value) {
+        return value.toString()
+      }
+    },
+    deserialize(value) {
+      if (value) {
+        /* return value deserialized from string */
+        return value.toString()
+      }
+    }
+  })
 
   const auth = getAuth(FirebaseApp)
   const provider = new GoogleAuthProvider()
