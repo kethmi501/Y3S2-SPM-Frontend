@@ -17,6 +17,7 @@
     "@reduxjs/toolkit": "^1.8.4",
     "axios": "^0.27.2",
     "firebase": "^9.9.2",
+    "framer-motion": "^7.2.1",
     "next": "12.2.5",
     "next-http-proxy-middleware": "^1.2.4",
     "react": "18.2.0",
