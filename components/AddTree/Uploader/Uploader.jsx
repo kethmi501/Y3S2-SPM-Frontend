@@ -1,44 +1,9 @@
 import React, { useEffect, useState } from 'react'
 
-const Uploader = ({uploadToClient}) => {
-  const handleFile = (e) => {
-    setMessage('')
-    let file = e.target.files
-
-    for (let i = 0; i < file.length; i++) {
-      const fileType = file[i]['type']
-      const validImageTypes = ['image/gif', 'image/jpeg', 'image/png']
-      if (validImageTypes.includes(fileType)) {
-        setFile([...files, file[i]])
-      } else {
-        setMessage('only images accepted')
-      }
-    }
-  }
-
-
-
-//   const uploadToClient = (event) => {
-//     if (event.target.files && event.target.files[0]) {
-//       const i = event.target.files[0]
-
-//       setImage(i)
-//       setCreateObjectURL(URL.createObjectURL(i))
-//     }
-//   }
-
-  const uploadToServer = async (event) => {
-    const body = new FormData()
-    body.append('file', image)
-    const response = await fetch('/api/file', {
-      method: 'POST',
-      body,
-    })
-  }
+const Uploader = ({ setFiles }) => {
   return (
     <div>
-      <div NameName="flex justify-center items-center w-full">
-
+      <div className="flex justify-center items-center w-full">
         <label
           htmlFor="dropzone-file"
           className="flex flex-col justify-center items-center md:w-64 w-full h-48 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
@@ -71,7 +36,8 @@ const Uploader = ({uploadToClient}) => {
             id="dropzone-file"
             type="file"
             className="hidden"
-            onChange={uploadToClient}
+            multiple={true}
+            onChange={setFiles}
           />
         </label>
       </div>
