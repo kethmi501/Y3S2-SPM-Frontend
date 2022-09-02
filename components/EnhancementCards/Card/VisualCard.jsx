@@ -27,7 +27,7 @@ const VisualCard = ({index}) => {
 
   return (
     <div>
-      <div className="flex w-full transform text-left text-base transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-4xl">
+      <div className="flex w-full transform text-left text-base transition md:my-8  md:px-4 ">
         <div className="relative flex w-full items-center overflow-hidden bg-white px-4 pt-14 pb-8 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
           <button
             type="button"
@@ -78,14 +78,14 @@ const VisualCard = ({index}) => {
                   <div className="mt-6">
                     <button
                       type="submit"
-                      className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                      className="flex w-full items-center justify-center rounded-md border border-transparent bg-green-600 py-3 px-8 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-50"
                     >
                       Add to bag
                     </button>
                   </div>
 
                   <p className="absolute top-4 left-4 text-center sm:static sm:mt-6">
-                    <a href={entity.href} className="font-medium text-indigo-600 hover:text-indigo-500">
+                    <a href={entity.href} className="font-medium text-green-600 hover:text-green-500">
                       View full details
                     </a>
                   </p>

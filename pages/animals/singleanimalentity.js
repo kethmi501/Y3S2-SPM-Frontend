@@ -35,8 +35,8 @@ const singleanimalentity = () => {
     },
   ]
   const router = useRouter()
-  // const { animalId } = router.query
-  let animalId = '630f23044a4e88b022ce303e'
+  const { id } = router.query
+  // let animalId = '630f23044a4e88b022ce303e'
 
   const [enhancementCardIds, setEnhancementCardIds] = useState([])
   const [enhancementCards, setEnhancementCards] = useState([...mockData])
@@ -44,12 +44,13 @@ const singleanimalentity = () => {
   const [animalData, setAnimalData] = useState({})
   useEffect(() => {
     //make this work with dynamic routing
-
-    getAnimal(animalId).then((res) => {
-      // setEnhancementCards(res.data.message)
-      setAnimalData(res.animal)
-    })
-  }, [])
+    if (id) {
+      getAnimal(id).then((res) => {
+        // setEnhancementCards(res.data.message)
+        setAnimalData(res.animal)
+      })
+    }
+  }, [id])
 
   useDidUpdate(() => {
     setEnhancementCardIds(animalData.enhancementCardIds)
@@ -63,7 +64,7 @@ const singleanimalentity = () => {
 
   return (
     <BasicPageWrapper>
-      <AnimalEntity />
+      <AnimalEntity animalData={animalData}/>
       <CardPlacement cardDetailArray={enhancementCards} />
     </BasicPageWrapper>
   )
