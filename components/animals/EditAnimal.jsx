@@ -1,25 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { ImCancelCircle } from 'react-icons/im'
 import { HiSaveAs } from 'react-icons/hi'
 import SpecificInfoAnimal from './SpecificInfoAnimal'
 import { toast } from 'react-toastify'
 import axios from 'axios'
-import { addAnimal } from '../../Api/animal'
+import { addAnimal, editAnimal, getAnimal } from '../../Api/animal'
 import { useLocalStorage } from '@mantine/hooks'
 import { useRouter } from 'next/router'
 
 const AddAnimal = () => {
   const router = useRouter()
-
+  const { id } = router.query
 
   const [nameInput, setNameInput] = useState('')
   const [scientificNameInput, setScientificNameInput] = useState('')
   const [tagInput, setTagInput] = useState([])
   const [typing, setTyping] = useState('')
   const [descriptionInput, setDescriptionInput] = useState('')
-
-
   const [avgMaleWeightInput, setAvgMaleWeightInput] = useState('')
   const [avgFemaleWeightInput, setAvgFemaleWeightInput] = useState('')
   const [avgMaleHeightInput, setAvgMaleHeightInput] = useState('')
@@ -48,8 +46,8 @@ const AddAnimal = () => {
       return
     }
 
-
-    addAnimal({
+    editAnimal({
+      id,
       nameInput,
       scientificNameInput,
       tagInput,
@@ -73,6 +71,31 @@ const AddAnimal = () => {
     })
 
   }
+
+  useEffect(() => {
+    if (id) {
+      getAnimal(id).then(res => {
+        console.log(res.animal);
+
+        setNameInput(res.animal.nameInput)
+        setScientificNameInput(res.animal.scientificNameInput)
+        setTagInput(res.animal.tagInput)
+        setDescriptionInput(res.animal.descriptionInput)
+        setAvgMaleWeightInput(res.animal.avgMaleWeightInput)
+        setAvgFemaleWeightInput(res.animal.avgFemaleWeightInput)
+        setAvgMaleHeightInput(res.animal.avgMaleHeightInput)
+        setAvgFemaleHeightInput(res.animal.avgFemaleHeightInput)
+        setKingdomOfAnimal(res.animal.kingdomOfAnimal)
+        setPhylumOfAnimal(res.animal.phylumOfAnimal)
+        setClassOfAnimal(res.animal.classOfAnimal)
+        setOrderOfAnimal(res.animal.orderOfAnimal)
+        setFamilyOfAnimal(res.animal.familyOfAnimal)
+        setGenusOfAnimal(res.animal.genusOfAnimal)
+        setSpeciesOfAnimal(res.animal.speciesOfAnimal)
+
+      })
+    }
+  }, [id])
 
   return (
     <div className='px-4 py-8 sm:px-6 sm:py-12 md:px-8 md:py-16 lg:px-10 lg:py-20 bg-white'>
