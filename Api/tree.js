@@ -24,7 +24,49 @@ export const addTree = async (
       }
     )
     .catch((err) => {
-        console.log(err)
+      console.log(err)
     })
   return res
+}
+
+export const retrieveTrees = async () => {
+  const data = await axios
+    .get('/api/gettrees', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+    .catch((err) => {
+      return err
+    })
+  return data.data
+}
+
+export const retrieveUserPosts = async () => {
+  const data = await axios
+    .get('/api/getuserposts', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+    .catch((err) => {
+      return err
+    })
+  return data.data
+}
+
+export const deletePost = async (postId) => {
+  const data = await axios
+    .delete('/api/deleteTree', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+      data: {
+        postId,
+      },
+    })
+    .catch((err) => {
+      return err
+    })
+  return data.data
 }
