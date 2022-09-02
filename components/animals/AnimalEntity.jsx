@@ -4,6 +4,12 @@ import { GiUpgrade } from 'react-icons/gi'
 import { TiExport } from 'react-icons/ti'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { RiDeleteBin5Fill } from 'react-icons/ri'
+import { HiArrowSmUp, HiArrowSmDown } from 'react-icons/hi'
+import AnimalImageList from './AnimalImageList'
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
 
 const animalWeight = [
   { id: 1, maleWeight: "160kg", femaleWeight: "130kg" },
@@ -11,6 +17,22 @@ const animalWeight = [
 
 const animalHeight = [
   { id: 1, maleHeight: "1.2m", femaleHeight: "90cm" },
+]
+
+const animalData = [
+  { category: 'Kingdom', value: 'Animalia (animals)' },
+  { category: 'Phylum', value: 'Chordata (vertebrate animals)' },
+  { category: 'Class', value: 'Mammalia (mammals)' },
+  { category: 'Order', value: 'Carnivora (meat eaters)' },
+  { category: 'Family', value: 'Felidae (all cats)' },
+  { category: 'Genus', value: 'Panthera (great cats)' },
+  { category: 'Species', value: 'leo (lions)' },
+]
+
+const tags = [
+  { id: 1, name: 'meats' },
+  { id: 2, name: 'eat meats' },
+  { id: 3, name: 'four legs' }
 ]
 
 
@@ -85,21 +107,40 @@ const AnimalEntity = () => {
           </div>
         </div>
       </div>
-      <div className='my-6 flex flex-row flex-wrap gap-1.5 items-center'>
-        <div className="px-5 py-0.5 border border-blue-300 shadow-inner rounded-2xl">Meat</div>
-        <div className="px-5 py-0.5 border border-blue-300 shadow-inner rounded-2xl">Meat</div>
-        <div className="px-5 py-0.5 border border-blue-300 shadow-inner rounded-2xl">Four Legs</div>
+      <div className='mt-10 lg:mt-4 flex flex-col lg:flex-row-reverse gap-4'>
+        <div className='lg:w-1/2'>
+          <h3 className='text-2xl font-bold text-gray-800 capitalize'>Categories</h3>
+          <div className="mt-5 grid grid-cols-1 outline-none rounded-lg bg-white md:grid-cols-2 gap-1.5 lg:gap-3">
+            {animalData.map((data, idx) => (
+              <div key={idx} className=" flex flex-row items-center gap-5 lg:gap-2 px-4 py-5 sm:p-6 border border-gray-200 hover:border-green-400 hover:shadow-lg">
+                <div className="text-xl lg:text-lg font-semibold text-blue-600">{data.category}</div>
+                <div className="flex items-baseline text-sm lg:text-xs font-semibold text-gray-600">
+                  {data.value}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className='lg:w-1/2'>
+          <div className='my-6 flex flex-row flex-wrap gap-1.5 items-center'>
+            {tags.map((tag) => {
+              return <div key={tag.id} className="px-5 py-0.5 border border-blue-300 shadow-inner rounded-2xl capitalize hover:shadow-lg">{tag.name}</div>
+            })}
+          </div>
+          <div className='flex justify-start gap-3'>
+            <button type='button' className='inline-flex gap-2 items-center px-4 py-2 bg-blue-400 hover:bg-blue-300 border border-blue-400 font-semibold text-gray-800 capitalize rounded-lg shadow-md focus:ring-2 focus:ring-offset-1 focus:ring-blue-400'>
+              <AiOutlineEdit className='text-gray-800' />
+              Edit Content
+            </button>
+            <button type='button' className='inline-flex gap-2 items-center px-4 py-2 bg-red-400 hover:bg-red-300 border border-red-400 font-semibold text-gray-800 capitalize rounded-lg shadow-md focus:ring-2 focus:ring-offset-1 focus:ring-red-400'>
+              <RiDeleteBin5Fill className='text-gray-800' />
+              Delete
+            </button>
+          </div>
+        </div>
       </div>
-      <div className='flex justify-start gap-3'>
-        <button type='button' className='inline-flex gap-2 items-center px-4 py-2 bg-blue-400 hover:bg-blue-300 border border-blue-400 font-semibold text-gray-800 capitalize rounded-lg shadow-md focus:ring-2 focus:ring-offset-1 focus:ring-blue-400'>
-          <AiOutlineEdit className='text-gray-800' />
-          Edit Content
-        </button>
-        <button type='button' className='inline-flex gap-2 items-center px-4 py-2 bg-red-400 hover:bg-red-300 border border-red-400 font-semibold text-gray-800 capitalize rounded-lg shadow-md focus:ring-2 focus:ring-offset-1 focus:ring-red-400'>
-          <RiDeleteBin5Fill className='text-gray-800' />
-          Delete
-        </button>
-
+      <div className='my-8'>
+        <AnimalImageList />
       </div>
     </div>
   )
