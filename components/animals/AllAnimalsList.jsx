@@ -26,7 +26,7 @@ const AllAnimalsList = () => {
                         })}
                         className="relative">
                         <div className="group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-green-500 overflow-hidden">
-                            <img src={'https://images.pexels.com/photos/572861/pexels-photo-572861.jpeg?cs=srgb&dl=pexels-richard-verbeek-572861.jpg&fm=jpg'} alt="" className="object-cover pointer-events-none group-hover:opacity-75" />
+                            <img src={animal.imageArray[0].url} alt="" className="object-cover pointer-events-none group-hover:opacity-75" />
                             <button type="button" className="absolute inset-0 focus:outline-none">
                                 <span className="sr-only">View details for {animal.nameInput}</span>
                             </button>

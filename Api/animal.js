@@ -46,4 +46,5 @@ export const editAnimal = async (animal) => {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     },
   })
+  return res.data.message
 }
