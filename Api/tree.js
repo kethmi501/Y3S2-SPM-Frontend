@@ -70,3 +70,43 @@ export const deletePost = async (postId) => {
     })
   return data.data
 }
+
+export const getOneUpdate = async (postId) => {
+  const data = await axios
+    .delete('/api/getOneUpdate', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+      data: {
+        postId,
+      },
+    })
+    .catch((err) => {
+      return err
+    })
+  return data.data
+}
+
+export const updatePost = async (
+  postId,
+  name,
+  image,
+  tags,
+  scientificname,
+  description
+) => {
+  const data = await axios
+    .put(
+      '/api/updatepost',
+      { postId, name, image, tags, scientificname, description },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      }
+    )
+    .catch((err) => {
+      return err
+    })
+  return data.data
+}

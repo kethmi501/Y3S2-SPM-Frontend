@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Router from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { Modal, Loader } from '@mantine/core'
@@ -23,6 +24,13 @@ const ViewMyPosts = () => {
     setRefresh(!refresh)
   }
 
+  const routeToUpdate = (postId) => {
+    Router.push({
+      pathname: '/trees/update-trees',
+      query: { postId: postId },
+    })
+  }
+
   useEffect(() => {
     async function getTrees() {
       let response = await retrieveUserPosts()
@@ -42,7 +50,7 @@ const ViewMyPosts = () => {
         <div>
           <button
             onClick={() => deletePostHandler()}
-            className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded'
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
           >
             Yes
           </button>
@@ -67,7 +75,7 @@ const ViewMyPosts = () => {
                 <button
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                   onClick={() => {
-                    setOpened(true)
+                    routeToUpdate(tree._id)
                   }}
                 >
                   Update
