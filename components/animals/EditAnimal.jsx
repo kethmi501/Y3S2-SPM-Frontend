@@ -8,10 +8,15 @@ import axios from 'axios'
 import { addAnimal, editAnimal, getAnimal } from '../../Api/animal'
 import { useLocalStorage } from '@mantine/hooks'
 import { useRouter } from 'next/router'
+import { uploadFile } from '../../Api/files'
+import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone'
 
 const AddAnimal = () => {
   const router = useRouter()
   const { id } = router.query
+
+  const [image, setImage] = useState(null)
+  const [imageArray, setImageArray] = useState([])
 
   const [nameInput, setNameInput] = useState('')
   const [scientificNameInput, setScientificNameInput] = useState('')
@@ -63,20 +68,41 @@ const AddAnimal = () => {
       familyOfAnimal,
       genusOfAnimal,
       speciesOfAnimal,
-    }).then(message => {
-      toast.success(message)
-      router.push('/animals/animalslist')
+      imageArray : imageArray.map((image , index) => {
+        return {
+          url : image,
+          index : index
+        }
+      }),
+    }).then(async message => {
+      toast.success(message.toString())
+      await router.push('/animals/animalslist')
     }).catch(err => {
       toast.error(err)
     })
 
   }
 
+  const handleImage = (e) => {
+    handleImageUpload(e[0]).then(res => {
+      setImageArray([...imageArray, res])
+
+    })
+  }
+
+  const handleImageUpload = async (file) => {
+    return await uploadFile(file)
+  }
+
+
+  const handleImageRemoval = (url) => {
+    setImageArray(imageArray.filter((image) => image !== url))
+  }
+
+
   useEffect(() => {
     if (id) {
       getAnimal(id).then(res => {
-        console.log(res.animal);
-
         setNameInput(res.animal.nameInput)
         setScientificNameInput(res.animal.scientificNameInput)
         setTagInput(res.animal.tagInput)
@@ -92,7 +118,7 @@ const AddAnimal = () => {
         setFamilyOfAnimal(res.animal.familyOfAnimal)
         setGenusOfAnimal(res.animal.genusOfAnimal)
         setSpeciesOfAnimal(res.animal.speciesOfAnimal)
-
+        setImageArray(res.animal.imageArray.map((image) => image.url))
       })
     }
   }, [id])
@@ -100,8 +126,29 @@ const AddAnimal = () => {
   return (
     <div className='px-4 py-8 sm:px-6 sm:py-12 md:px-8 md:py-16 lg:px-10 lg:py-20 bg-white'>
       <div className='flex flex-col lg:flex-row w-full gap-5 lg:gap-4'>
-        <Image src={'https://images.pexels.com/photos/247502/pexels-photo-247502.jpeg?auto=compress&cs=tinysrgb&w=600'}
-               width={500} height={540} className='rows-span-2 md:cols-span-1 object-cover rounded-lg shadow-lg' />
+        <div className={`max-w-min`}>
+          <Dropzone onDrop={handleImage} accept={IMAGE_MIME_TYPE}>
+            <div className='w-80 h-80 rounded-lg bg-gray-100 flex items-center justify-center'>
+              {imageArray && imageArray[0] ? <Image src={imageArray[0]}
+                                                    width={500} height={540}
+                                                    className='rows-span-2 md:cols-span-1 object-cover rounded-lg shadow-lg' />
+                : 'Please Add more than One image'
+              }
+            </div>
+          </Dropzone>
+          <div className={`grid grid-cols-4 m-2 gap-1`}>
+            {imageArray.map((file, index) => {
+              return (
+                <div onClick={() => {
+                  handleImageRemoval(file)
+                }} key={file} className={`hover:scale-110 `}>
+                  <img src={file} alt={index.toString()} />
+                </div>
+              )
+            })}
+          </div>
+        </div>
+
 
         <div className='pt-2 md:pt-8 w-full'>
           <div className='flex flex-col gap-4 items-center'>
