@@ -59,6 +59,8 @@ const singleanimalentity = () => {
 
   useDidUpdate(() => {
     // setEnhancementCards(animalData.enhancementCards)
+    //TODO enhancement cards
+
     console.log(enhancementCardIds)
   }, [enhancementCardIds])
 
