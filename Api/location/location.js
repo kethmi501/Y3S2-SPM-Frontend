@@ -20,3 +20,46 @@ export const addLocation = async (district, location, image) => {
     })
   return res
 }
+
+export const retrieveLocation = async () => {
+  const data = await axios
+    .get('/api/location/retrieveall', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+    .catch((err) => {
+      return err
+    })
+  return data.data
+}
+
+export const addLike = async (postId) => {
+  const data = await axios
+    .put(
+      '/api/locaton/likePost',
+      { postId },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      }
+    )
+    .catch((err) => {
+      return err
+    })
+  return data.data
+}
+
+export const retrieveUserPosts = async () => {
+    const data = await axios
+      .get('/api/location/retrieveuserposts', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
+      .catch((err) => {
+        return err
+      })
+    return data.data
+  }

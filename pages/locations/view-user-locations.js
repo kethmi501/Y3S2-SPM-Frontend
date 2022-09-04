@@ -1,17 +1,17 @@
 import React from 'react'
 import TabGroup from '../../components/treeTabs/TabGroup'
-import ViewLocations from '../../widgets/location/ViewLocations'
+import UserLocations from '../../widgets/location/UserLocations'
 import {TabMenuLocations} from '../../const/tabMenuLocation'
 
-const ViewLocation = () => {
+const ViewUserLocations = () => {
   return (
     <div className="h-screem">
       <div className="py-6">
-        <TabGroup tabs={TabMenuLocations} current="All Locations" />
+        <TabGroup tabs={TabMenuLocations} current="My Locations" />
       </div>
-      <ViewLocations />
+      <UserLocations />
     </div>
   )
 }
 
-export default ViewLocation
+export default ViewUserLocations
