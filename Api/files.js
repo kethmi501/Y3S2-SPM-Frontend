@@ -2,11 +2,11 @@ import { FirebaseApp } from '../services/firebase'
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage'
 
 
-export const uploadFile = async (file) => {
+export const uploadFile = async (file, place) => {
   const storage = getStorage(FirebaseApp)
 
 
-  const storageRef = ref(storage, `images/animals/${file.name}`)
+  const storageRef = ref(storage, `images/${place}/${file.name}`)
 
   const uploadTask = uploadBytesResumable(storageRef, file)
 
@@ -18,7 +18,7 @@ export const uploadFile = async (file) => {
     },
     (error) => {
       alert(error)
-    }
+    },
   )
 
   return getDownloadURL(uploadTask.snapshot.ref)

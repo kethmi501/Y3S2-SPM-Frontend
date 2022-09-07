@@ -39,7 +39,7 @@ const singleanimalentity = () => {
   // let animalId = '630f23044a4e88b022ce303e'
 
   const [enhancementCardIds, setEnhancementCardIds] = useState([])
-  const [enhancementCards, setEnhancementCards] = useState([...mockData])
+    const [enhancementCards, setEnhancementCards] = useState([...mockData])
 
   const [animalData, setAnimalData] = useState({})
   useEffect(() => {
@@ -53,15 +53,16 @@ const singleanimalentity = () => {
   }, [id])
 
   useDidUpdate(() => {
-    setEnhancementCardIds(animalData.enhancementCardIds)
+    if  (animalData.enhancementCardIds) {
+      setEnhancementCardIds(animalData.enhancementCardIds)
+    }
   }, [animalData])
 
 
   useDidUpdate(() => {
-    // setEnhancementCards(animalData.enhancementCards)
-    //TODO enhancement cards
-
-    console.log(enhancementCardIds)
+    if (enhancementCardIds.length > 0) {
+      //get enhancement cards from enhancementCardIds
+    }
   }, [enhancementCardIds])
 
   return (

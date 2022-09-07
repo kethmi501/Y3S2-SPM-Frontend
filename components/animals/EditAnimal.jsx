@@ -91,7 +91,7 @@ const AddAnimal = () => {
   }
 
   const handleImageUpload = async (file) => {
-    return await uploadFile(file)
+    return await uploadFile(file , 'animals')
   }
 
 

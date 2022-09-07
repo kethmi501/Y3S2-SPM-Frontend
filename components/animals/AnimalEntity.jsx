@@ -54,9 +54,10 @@ const AnimalEntity = ({ animalData }) => {
   return (
     <div className='px-4 py-8 sm:px-6 sm:py-12 md:px-8 md:py-16 lg:px-10 lg:py-20 bg-white'>
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-4'>
-        {animalData && animalData.imageArray &&  <Image priority={true}
-                                                        src={animalData.imageArray[0].url}
-                                                        width={400} height={540} className='rows-span-2 md:cols-span-1 object-cover rounded-lg shadow-lg' />}
+        {animalData && animalData.imageArray && <Image priority={true}
+                                                       src={animalData.imageArray[0].url}
+                                                       width={400} height={540}
+                                                       className='rows-span-2 md:cols-span-1 object-cover rounded-lg shadow-lg' />}
         <div className='flex flex-col gap-6'>
           <div className='flex flex-row justify-between'>
             <div className='flex flex-col gap-0.5 items-center'>
@@ -64,8 +65,13 @@ const AnimalEntity = ({ animalData }) => {
               <h3 className='text-lg font-bold text-gray-500 capitalize'>{animalData.scientificNameInput}</h3>
             </div>
             <div className='flex flex-col gap-2 items-start'>
-              <button type='button'
-                      className='inline-flex gap-2 items-center px-4 py-2 bg-green-400 hover:bg-green-300 border border-green-400 font-semibold text-gray-800 capitalize rounded-lg shadow-md focus:ring-2 focus:ring-offset-1 focus:ring-green-400'>
+              <button
+                onClick={() => router.push({
+                  pathname: '/animals/enhance',
+                  query: { id: animalData._id },
+                })}
+                type='button'
+                className='inline-flex gap-2 items-center px-4 py-2 bg-green-400 hover:bg-green-300 border border-green-400 font-semibold text-gray-800 capitalize rounded-lg shadow-md focus:ring-2 focus:ring-offset-1 focus:ring-green-400'>
                 <GiUpgrade className='text-gray-800' />
                 Enhance
               </button>
@@ -174,7 +180,7 @@ const AnimalEntity = ({ animalData }) => {
         </div>
       </div>
       <div className='my-8'>
-        <AnimalImageList imageArray={animalData.imageArray}/>
+        <AnimalImageList imageArray={animalData.imageArray} />
       </div>
     </div>
   )
