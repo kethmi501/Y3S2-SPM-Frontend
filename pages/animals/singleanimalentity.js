@@ -5,6 +5,7 @@ import CardPlacement from '../../components/EnhancementCards/Surround/CardPlacem
 import { useRouter } from 'next/router'
 import { getAnimal } from '../../Api/animal'
 import { useDidUpdate } from '@mantine/hooks'
+import { getEnhancementCard } from '../../Api/enhancements'
 
 const singleanimalentity = () => {
   const mockData = [
@@ -39,7 +40,7 @@ const singleanimalentity = () => {
   // let animalId = '630f23044a4e88b022ce303e'
 
   const [enhancementCardIds, setEnhancementCardIds] = useState([])
-    const [enhancementCards, setEnhancementCards] = useState([...mockData])
+  const [enhancementCards, setEnhancementCards] = useState([])
 
   const [animalData, setAnimalData] = useState({})
   useEffect(() => {
@@ -53,22 +54,34 @@ const singleanimalentity = () => {
   }, [id])
 
   useDidUpdate(() => {
-    if  (animalData.enhancementCardIds) {
+    if (animalData.enhancementCardIds) {
       setEnhancementCardIds(animalData.enhancementCardIds)
     }
   }, [animalData])
 
 
-  useDidUpdate(() => {
+  useDidUpdate(async () => {
     if (enhancementCardIds.length > 0) {
       //get enhancement cards from enhancementCardIds
+      fetchEnhancementCards()
     }
   }, [enhancementCardIds])
 
+
+  const fetchEnhancementCards = async () => {
+    //get enhancement cards from enhancementCardIds
+    for (let i = 0; i < enhancementCardIds.length; i++) {
+      await getEnhancementCard(enhancementCardIds[i]).then((res) => {
+        setEnhancementCards((prev) => [...prev, res.enhancementCard])
+      })
+    }
+  }
+
+
   return (
     <BasicPageWrapper>
-      <AnimalEntity animalData={animalData}/>
-      <CardPlacement cardDetailArray={enhancementCards} />
+      <AnimalEntity animalData={animalData} />
+      {enhancementCards && enhancementCards.length > 0 && <CardPlacement cardDetailArray={enhancementCards} />}
     </BasicPageWrapper>
   )
 }
