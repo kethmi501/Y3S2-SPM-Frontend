@@ -6,9 +6,9 @@ import VisualCard from '../Card/VisualCard'
 const CardPlacement = ({ cardDetailArray }) => {
   return (
     <EnhancementCardWrapper >
-      {cardDetailArray.map((item, index) => {
+      {cardDetailArray.map((item) => {
         return (
-          <VisualCard key={item._id} index={index} padding={index} />
+          <VisualCard key={item._id} data={item}/>
         )
       })}
     </EnhancementCardWrapper>

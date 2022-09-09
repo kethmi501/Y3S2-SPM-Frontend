@@ -93,7 +93,7 @@ const AddAnimal = () => {
 
     if (imageArray.length > 0) {
       for (let i = 0; i < imageArray.length; i++) {
-        await uploadFile(imageArray[i])
+        await uploadFile(imageArray[i] , 'animals')
           .then((res) => {
             imageUrlArray.push(res)
           })

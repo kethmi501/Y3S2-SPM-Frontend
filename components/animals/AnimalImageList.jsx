@@ -26,16 +26,16 @@ const AnimalImageList = ({ imageArray }) => {
         className='mySwiper'
       >
         {imageArray && imageArray.map((file, idx) => (
-            <SwiperSlide key={idx} className='flex gap-x-4'>
-              <div className='relative'>
-                <div
-                  className='group w-full rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-blue-500 overflow-hidden'>
-                  <Image src={file.url} alt='image' width={600} height={600}
-                         className='w-full h-full object-cover pointer-events-none group-hover:opacity-75' />
-                </div>
+          <SwiperSlide key={idx} className='flex gap-x-4 relative z-10'>
+            <div className='relative'>
+              <div
+                className='relative z-10 group w-full rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-blue-500 overflow-hidden'>
+                <Image src={file.url} alt='image' width={600} height={600}
+                       className='relative z-10 w-full h-full object-cover pointer-events-none group-hover:opacity-75' />
               </div>
-            </SwiperSlide>
-          ))
+            </div>
+          </SwiperSlide>
+        ))
         }
       </Swiper>
     </CarouselWrapper>

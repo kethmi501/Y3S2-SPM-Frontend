@@ -9,9 +9,11 @@ const AllAnimalsList = () => {
 
 
     useEffect(() => {
-        getAnimalsData().then(res => {
-            setAnimalsList(res)
-        })
+        if (router.pathname){
+            getAnimalsData().then(res => {
+                setAnimalsList(res)
+            })
+        }
     }, [])
 
 
