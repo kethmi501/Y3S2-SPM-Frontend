@@ -5,11 +5,11 @@ import { useRouter } from 'next/router'
 const Edit = () => {
   const router = useRouter()
 
-  const {entityId , id} = router.query
+  const {entityID , id} = router.query
 
   return (
     <div>
-      <EditEnhancementCard entityId={entityId}  id={id}/>
+      <EditEnhancementCard entityId={entityID}  id={id}/>
     </div>
   )
 }

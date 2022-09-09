@@ -56,7 +56,7 @@ export const editEnhancementCard = async (enhancementID, entityType, entityID, t
   const res = await axios
     .put('/api/enhancementCards/editCard',
       {
-        enhancementID,
+        enhancementCardId: enhancementID,
         entityType,
         entityID,
         topic,

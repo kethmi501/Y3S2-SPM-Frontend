@@ -8,36 +8,8 @@ import { useDidUpdate } from '@mantine/hooks'
 import { getEnhancementCard } from '../../Api/enhancements'
 
 const singleanimalentity = () => {
-  const mockData = [
-    {
-      _id: '5f762f56-315f-4b58-b5c0-bb9f3a4b7043',
-      topic: 'Animal Fact 1',
-      description: 'Animal Desc 1',
-    },
-    {
-      _id: '5e2e4937-387d-4b04-9efa-0810c1ef9cff',
-      topic: 'Animal Fact 1',
-      description: 'Animal Desc 1',
-    },
-    {
-      _id: 'c45a0ee4-b39e-4d86-8e15-3d7414d0e0f8',
-      topic: 'Animal Fact 1',
-      description: 'Animal Desc 1',
-    },
-    {
-      _id: '5fdee8fc-6a71-4789-ac2d-3b1f4e7a91ea',
-      topic: 'Animal Fact 1',
-      description: 'Animal Desc 1',
-    },
-    {
-      _id: '9ff17ba2-c251-4ad1-9975-da8b6531235e',
-      topic: 'Animal Fact 1',
-      description: 'Animal Desc 1',
-    },
-  ]
   const router = useRouter()
   const { id } = router.query
-  // let animalId = '630f23044a4e88b022ce303e'
 
   const [enhancementCardIds, setEnhancementCardIds] = useState([])
   const [enhancementCards, setEnhancementCards] = useState([])
@@ -46,22 +18,26 @@ const singleanimalentity = () => {
   useEffect(() => {
     //make this work with dynamic routing
     if (id) {
-      getAnimal(id).then((res) => {
-        // setEnhancementCards(res.data.message)
-        setAnimalData(res.animal)
-      })
+      fetchAnimal(id)
     }
   }, [id])
 
-  useDidUpdate(() => {
-    if (animalData.enhancementCardIds) {
+  const fetchAnimal = (id) => {
+    getAnimal(id).then((res) => {
+      // setEnhancementCards(res.data.message)
+      setAnimalData(res.animal)
+    })
+  }
+
+  useEffect(() => {
+    if (animalData && animalData.enhancementCardIds && animalData.enhancementCardIds.length > 0) {
       setEnhancementCardIds(animalData.enhancementCardIds)
     }
   }, [animalData])
 
 
-  useDidUpdate(async () => {
-    if (enhancementCardIds.length > 0) {
+  useEffect(() => {
+    if (enhancementCardIds && enhancementCardIds.length > 0) {
       //get enhancement cards from enhancementCardIds
       fetchEnhancementCards()
     }
@@ -80,7 +56,7 @@ const singleanimalentity = () => {
 
   return (
     <BasicPageWrapper>
-      <AnimalEntity animalData={animalData} />
+      {animalData && <AnimalEntity animalData={animalData} />}
       {enhancementCards && enhancementCards.length > 0 && <CardPlacement cardDetailArray={enhancementCards} />}
     </BasicPageWrapper>
   )

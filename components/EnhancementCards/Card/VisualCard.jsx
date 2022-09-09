@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import EnhancementCardWrapper from '../../layouts/EnhancementCardWrapper'
 import ReportModal from './ReportModal'
 import { reportCard } from '../../../Api/enhancements'
+import { router } from 'next/client'
 
 
 const VisualCard = ({ data }) => {
@@ -50,7 +51,7 @@ const VisualCard = ({ data }) => {
               <section aria-labelledby='information-heading' className='mt-3'>
                 <h2 className='text-2xl font-bold text-gray-900 sm:pr-12 '>{entity.name}</h2>
                 <h3 id='information-heading' className='sr-only'>
-                  Product information
+                  Enhancement Card INFORMATION
                 </h3>
 
 
@@ -66,7 +67,17 @@ const VisualCard = ({ data }) => {
                 <div>
                   <div className='mt-6'>
                     <button
-                      type='submit'
+                      onClick={() => {
+                        router.push({
+                          pathname: '/animals/enhance/edit',
+                          query:
+                            {
+                              id: data._id,
+                              entityID: data.entityID,
+                            },
+                        })
+                      }}
+                      type='button'
                       className='flex w-full items-center justify-center rounded-md border border-transparent bg-green-600 py-3 px-8 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-50'
                     >
                       ✨ Enhance this Enhancement
@@ -74,7 +85,7 @@ const VisualCard = ({ data }) => {
                   </div>
 
                   <p className='absolute top-4 left-4 text-center sm:static sm:mt-6'
-                     >
+                  >
                     <p className='font-medium text-red-600 hover:text-red-500 cursor-pointer'
                        onClick={() => setOpenReportModal(true)}>
                       ⚠️ Report This enhancement ️

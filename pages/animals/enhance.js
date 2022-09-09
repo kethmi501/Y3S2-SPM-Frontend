@@ -6,17 +6,12 @@ const Enhance = () => {
   const router = useRouter()
   const { id } = router.query
 
-  useEffect(() => {
-    if (id) {
-      // console.log(id)
-    }
-  }, [id])
-
   return (
     <div>
-      {id && <div className={`px-20 pt-10`}>
-        <AddEnhancementCard id={id}/>
-      </div>}
+      {id &&
+        <div className={`px-20 pt-10`}>
+          <AddEnhancementCard id={id} />
+        </div>}
     </div>
   )
 }

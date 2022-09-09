@@ -24,25 +24,33 @@ const EditEnhancementCard = ({ id, entityId }) => {
 
 
   useEffect(() => {
-    getEnhancementCard(id)
-      .then((res) => {
-        setTopic(res.data.topic)
-        setDesc(res.data.desc)
-        setImageArray(res.data.imageArray)
-      })
-  }, [])
+    if (id) {
+      fetchEnhancementCard()
+    }
+  }, [id])
 
+
+  const fetchEnhancementCard = async () => {
+    if (id) {
+      getEnhancementCard(id)
+        .then((res) => {
+          setTopic(res.enhancementCard.topic)
+          setDesc(res.enhancementCard.description)
+          setImageArray(res.enhancementCard.imageArray)
+        })
+    }
+  }
 
   const handleAddEnhancementCard = () => {
     editEnhancementCard(id, 'animal', entityId, topic, desc, imageArray)
       .then(async (res) => {
         await router.push({
           pathname: '/animals/singleanimalentity',
-          query: { id: id },
+          query: { id: entityId },
         })
 
       }).catch(() => {
-      toast.error('Error adding enhancement card. Please try again later.')
+      toast.error('Error editing enhancement card. Please try again later.')
     })
   }
 
@@ -95,7 +103,7 @@ const EditEnhancementCard = ({ id, entityId }) => {
         <div className='md:col-span-1'>
           <div className='px-4 sm:px-0'>
             <h3 className='text-lg font-medium leading-6 text-gray-900'>
-              Add Enhancement Card
+              Edit Enhancement Card
             </h3>
             <p className='mt-1 text-sm text-gray-600'>
               This information will be displayed publicly so be careful what you share.
