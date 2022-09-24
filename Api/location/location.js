@@ -52,14 +52,49 @@ export const addLike = async (postId) => {
 }
 
 export const retrieveUserPosts = async () => {
-    const data = await axios
-      .get('/api/location/retrieveuserposts', {
+  const data = await axios
+    .get('/api/location/retrieveuserposts', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+    .catch((err) => {
+      return err
+    })
+  return data.data
+}
+
+export const deletePost = async (postId) => {
+  const data = await axios
+    .delete('/api/location/delete', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+      data: {
+        postId,
+      },
+    })
+    .catch((err) => {
+      return err
+    })
+  return data.data
+}
+
+export const getOneUpdate = async (postId) => {
+  const data = await axios
+    .post(
+      '/api/location/retrieveOneUpdate',
+      {
+        postId: postId,
+      },
+      {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
-      })
-      .catch((err) => {
-        return err
-      })
-    return data.data
-  }
+      }
+    )
+    .catch((err) => {
+      return err
+    })
+  return data.data
+}
