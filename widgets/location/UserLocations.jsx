@@ -59,12 +59,12 @@ const UserLocations = () => {
           <Loader color="orange" size="xl" variant="bars" />
         </div>
       )}
-      <div className="grid grid-cols-3">
+      <div className="grid grid-row lg:grid-cols-2 px-5">
         {data &&
           data.map((location, idx) => (
             <div key={idx} className="relative">
               <LocationCard
-                location={location.district}
+                locations={location}
                 src={location.images[0]}
               />
               <div className="flex space-x-2 absolute top-2 left-2">

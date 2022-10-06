@@ -110,14 +110,23 @@ const AddLocation = () => {
       return url.url
     })
 
-    const postResponse = await addLocation(district, center, onlyUrls)
-    if (postResponse.status === 200) {
-      setLoading(false)
-      toast.success('Successfuly ceated')
-      console.log(postResponse)
+    if (image && district && center && address) {
+      const postResponse = await addLocation(
+        district,
+        center,
+        onlyUrls,
+        address
+      )
+      if (postResponse.status === 200) {
+        setLoading(false)
+        toast.success('Successfuly ceated')
+        console.log(postResponse)
+      } else {
+        setLoading(false)
+        toast.error(postResponse.message)
+      }
     } else {
-      setLoading(false)
-      toast.error(postResponse.message)
+      toast.warn('Recheck all fields.')
     }
   }
 

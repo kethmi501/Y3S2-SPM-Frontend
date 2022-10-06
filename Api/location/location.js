@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const addLocation = async (district, location, image) => {
+export const addLocation = async (district, location, image, address) => {
   const res = await axios
     .post(
       '/api/location/addlocation',
@@ -8,6 +8,7 @@ export const addLocation = async (district, location, image) => {
         district,
         location,
         image,
+        address,
       },
       {
         headers: {
@@ -93,6 +94,17 @@ export const getOneUpdate = async (postId) => {
         },
       }
     )
+    .catch((err) => {
+      return err
+    })
+  return data.data
+}
+
+export const searchLocations = async (keyword) => {
+  const data = await axios
+    .post('/api/location/search', {
+      keyword,
+    })
     .catch((err) => {
       return err
     })
