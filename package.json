@@ -12,6 +12,7 @@
     "@emotion/react": "^11.10.0",
     "@emotion/server": "^11.10.0",
     "@headlessui/react": "^1.7.0",
+    "@lottiefiles/react-lottie-player": "^3.4.7",
     "@mantine/core": "^5.1.4",
     "@mantine/dropzone": "^5.2.4",
     "@mantine/hooks": "^5.1.4",
