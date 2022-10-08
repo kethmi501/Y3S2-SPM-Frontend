@@ -41,7 +41,7 @@ const ViewMyPosts = () => {
   }, [refresh])
 
   return (
-    <div className="relative">
+    <div className="relative h-full">
       <Modal
         opened={opened}
         onClose={() => setOpened(false)}

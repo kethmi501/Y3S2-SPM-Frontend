@@ -110,3 +110,15 @@ export const updatePost = async (
     })
   return data.data
 }
+
+export const searchTrees = async (keyword) => {
+  console.log(keyword, 'key')
+  const data = await axios
+    .post('/api/searchtrees', {
+      keyword: keyword,
+    })
+    .catch((err) => {
+      return err
+    })
+  return data.data
+}
