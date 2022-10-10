@@ -56,10 +56,6 @@ const UpdateTree = () => {
     }
   }, [data])
 
-  useEffect(() => {
-    console.log(image)
-  }, [image])
-
   const removeTag = (id) => {
     const newNewTag = tags.filter((tag) => tag.id !== id)
     setTags(newNewTag)

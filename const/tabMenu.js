@@ -11,4 +11,8 @@ export const TabMenu = [
     name: 'My Posts',
     href: '/trees/view-my-posts',
   },
+  {
+    name: 'Report',
+    href: '/trees/report',
+  },
 ]

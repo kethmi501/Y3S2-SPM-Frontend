@@ -1,14 +1,13 @@
+import { Player } from '@lottiefiles/react-lottie-player'
 import React from 'react'
 import TabGroup from '../../components/treeTabs/TabGroup'
-import AddLocationWidget from '../../widgets/location/AddLocation'
 import { TabMenuLocations } from '../../const/tabMenuLocation'
-import Background from '../../public/img/lottie/86513-location-forked.json'
-import { Player } from '@lottiefiles/react-lottie-player'
+import ViewLocation from '../../widgets/location/ViewLocation'
 
-const AddLocation = () => {
+const location = () => {
   return (
     <div className="h-screen relative">
-      <Player
+      {/* <Player
         autoplay
         loop
         src={Background}
@@ -17,18 +16,18 @@ const AddLocation = () => {
           objectFit: 'fill',
           opacity: '30%',
         }}
-      ></Player>
+      ></Player> */}
 
       <div className="absolute w-full top-0">
         <div className="py-6">
-          <TabGroup tabs={TabMenuLocations} current="Add Location" />
+          <TabGroup tabs={TabMenuLocations} current="" />
         </div>
         <div className="px-28">
-          <AddLocationWidget />
+          <ViewLocation />
         </div>
       </div>
     </div>
   )
 }
 
-export default AddLocation
+export default location

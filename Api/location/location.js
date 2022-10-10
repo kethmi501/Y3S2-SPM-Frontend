@@ -110,3 +110,20 @@ export const searchLocations = async (keyword) => {
     })
   return data.data
 }
+
+export const updatelocation = async (postId, image) => {
+  const data = await axios
+    .put(
+      '/api/location/updatelocation',
+      { postId, image },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      }
+    )
+    .catch((err) => {
+      return err
+    })
+  return data
+}
