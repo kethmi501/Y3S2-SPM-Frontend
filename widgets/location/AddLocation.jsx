@@ -15,6 +15,8 @@ import Geocode from 'react-geocode'
 import { Loader, Progress } from '@mantine/core'
 import { addLocation } from '../../Api/location/location'
 import { toast } from 'react-toastify'
+import AddLocationLot from '../../public/img/lottie/4199-location-search.json'
+import { Player } from '@lottiefiles/react-lottie-player'
 
 const AddLocation = () => {
   const [district, setDistricts] = useState()
@@ -133,11 +135,11 @@ const AddLocation = () => {
   return (
     <div className="p-5 relative">
       {loading && (
-        <div className="absolute h-full w-full flex items-center justify-center bg-white/70">
+        <div className="absolute h-full w-full flex items-center justify-center bg-white">
           <Loader color="orange" size="xl" variant="bars" />
         </div>
       )}
-      <div className="flex flex-row-reverse bg-gray-300 py-10 px-5 rounded-xl">
+      <div className="flex flex-row-reverse bg-gray-300/90 py-10 px-5 rounded-xl">
         <div className="w-1/2 flex flex-col justify-around">
           <DropDown
             items={districts}
@@ -201,19 +203,32 @@ const AddLocation = () => {
         <div className="w-1/2">
           {isLoaded && (
             <div>
-              <GoogleMap
-                mapContainerStyle={containerStyle}
-                center={center}
-                zoom={16}
-                onLoad={onLoad}
-                onUnmount={onUnmount}
-                options={{
-                  streetViewControl: false,
-                  mapTypeControl: false,
-                }}
-              >
-                <Marker animation={2} position={center} draggable={true} />
-              </GoogleMap>
+              {checked ? (
+                <GoogleMap
+                  mapContainerStyle={containerStyle}
+                  center={center}
+                  zoom={16}
+                  onLoad={onLoad}
+                  onUnmount={onUnmount}
+                  options={{
+                    streetViewControl: false,
+                    mapTypeControl: false,
+                  }}
+                >
+                  <Marker animation={2} position={center} draggable={true} />
+                </GoogleMap>
+              ) : (
+                <div className="p-1 bg-gray-200 m-2">
+                  <Player
+                    autoplay
+                    loop
+                    src={AddLocationLot}
+                    style={{
+                      width: '50%',
+                    }}
+                  ></Player>
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -224,12 +239,12 @@ const AddLocation = () => {
             <Progress color="grape" value={percent} striped animate />
           )}
         </div>
-        <div className="w-full h-[150px] rounded-lg flex space-x-2 bg-gray-200">
+        <div className="w-full h-[150px] rounded-lg flex space-x-2 bg-gray-300/90">
           {image &&
             image.map((url) => (
               <img
                 key={url.id}
-                className="object-none object-center border border-4 rounded-lg  hover:border-red-700 w-40 h-full cursor-pointer"
+                className="object-none object-center border-4 rounded-lg  hover:border-red-700 w-40 h-full cursor-pointer"
                 src={url.url}
               />
             ))}
