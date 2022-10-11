@@ -127,7 +127,7 @@ const AddTree = () => {
         </div>
       )}
       <form
-        className="flex flex-col rounded-3xl bg-gray-100 py-10 px-7 md:w-[600px] md:h-[600px] w-full h-fit m-3"
+        className="flex flex-col rounded-3xl bg-gray-100/50 py-10 px-7 md:w-[600px] md:h-[600px] w-full h-fit m-3"
         onSubmit={handleUpload}
       >
         <section className="flex md:flex-row flex-col">

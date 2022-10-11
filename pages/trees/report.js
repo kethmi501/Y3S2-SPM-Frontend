@@ -5,6 +5,7 @@ import { TabMenu } from '../../const/tabMenu'
 
 const Report = () => {
   const [data, setData] = useState()
+  const [print, setPrint] = useState(false)
 
   useEffect(() => {
     async function getTrees() {
@@ -17,7 +18,9 @@ const Report = () => {
   return (
     <div className="bg-gray-100 h-screen">
       <div className="bg-blue-100 rounded-br-lg rounded-bl-lg shadow-lg">
-        <TabGroup tabs={TabMenu} current="All Posts" />
+        <div className={`${print ? 'hidden' : 'block'}`}>
+          <TabGroup tabs={TabMenu} current="Report" />
+        </div>
       </div>
       <div className="space-y-5 py-10 px-8">
         {data &&
@@ -51,6 +54,20 @@ const Report = () => {
             </div>
           </div>
         )}
+      </div>
+      <div className={`${print ? 'hidden' : 'block'} flex justify-center`}>
+        <button
+          className="bg-green-300 px-4 py-2 rounded-lg font-medium hover:bg-green-400 hover:text-white"
+          onClick={() => {
+            setPrint(true)
+            setTimeout(() => {
+              window.print()
+              setPrint(false)
+            }, 1000)
+          }}
+        >
+          Print Report
+        </button>
       </div>
     </div>
   )

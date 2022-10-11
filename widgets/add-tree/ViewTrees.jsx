@@ -1,23 +1,17 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
 import { Loader } from '@mantine/core'
 import { retrieveTrees, searchTrees } from '../../Api/tree'
 import TreeCard from './treeCard/TreeCard'
-import TabGroup from '../../components/treeTabs/TabGroup'
 import Search from '../../components/AddTree/search/Search'
+import Router from 'next/router'
 
 const ViewTrees = () => {
-  const tabs = [
-    {
-      name: 'All Posts',
-      href: '/trees/view-trees',
-    },
-    {
-      name: 'My Posts',
-      href: '/trees/view-my-posts',
-    },
-  ]
+  const routeToUpdate = (postId) => {
+    Router.push({
+      pathname: '/trees/tree',
+      query: { postId: postId },
+    })
+  }
 
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState()
@@ -59,6 +53,8 @@ const ViewTrees = () => {
           data.map((tree, idx) => (
             <div key={idx}>
               <TreeCard
+                id={tree._id}
+                onClick={routeToUpdate}
                 url={tree.image[0]}
                 name={tree.name}
                 description={tree.description}

@@ -11,4 +11,8 @@ export const TabMenuLocations = [
     name: 'My Locations',
     href: '/locations/view-user-locations',
   },
+  {
+    name: 'Report',
+    href: '/locations/report',
+  },
 ]

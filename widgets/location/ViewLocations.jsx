@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import Router from 'next/router'
 import LocationCard from '../../components/location/posts/LocationCard'
 import {
   retrieveLocation,
@@ -14,7 +15,6 @@ const ViewLocations = () => {
   const [refresh, setRefresh] = useState(false)
 
   const checkLike = (array) => {
-    console.log('array', array)
     if (array) {
       const index = array.findIndex((object) => object === user)
       if (index === -1) {
@@ -56,6 +56,13 @@ const ViewLocations = () => {
     })
   }
 
+  const routeToLocation = (id) => {
+    Router.push({
+      pathname: '/locations/location',
+      query: { locationId: id },
+    })
+  }
+
   return (
     <div>
       <div className="px-5 py-5">
@@ -65,7 +72,11 @@ const ViewLocations = () => {
         {data &&
           data.map((locations, idx) => (
             <div key={idx} className="relative w-fit">
-              <LocationCard locations={locations} src={locations.images[0]} />
+              <LocationCard
+                locations={locations}
+                src={locations.images[0]}
+                onClick={routeToLocation}
+              />
               <div className="absolute bottom-4 right-2">
                 <div
                   onClick={() => {

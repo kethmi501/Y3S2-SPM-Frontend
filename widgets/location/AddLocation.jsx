@@ -107,6 +107,7 @@ const AddLocation = () => {
       upLoad()
     }
   }
+
   const onSubmit = async () => {
     const onlyUrls = image.map((url) => {
       return url.url
