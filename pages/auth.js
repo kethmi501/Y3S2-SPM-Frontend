@@ -1,12 +1,12 @@
 import React from 'react'
 import LoginBtn from '../components/loginBtn'
+import BasicPageWrapper from '../components/layouts/BasicPageWrapper'
 
 const Auth = () => {
   return (
-    <div>
-      <h1>Auth</h1>
+    <BasicPageWrapper>
       <LoginBtn/>
-    </div>
+    </BasicPageWrapper>
   )
 }
 

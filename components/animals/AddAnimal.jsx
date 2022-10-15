@@ -79,7 +79,7 @@ const AddAnimal = () => {
           }),
         }).then(message => {
           toast.success(message)
-          router.push('/animals/animalslist')
+          router.push('/animals/')
         }).catch(err => {
           toast.error(err)
         })

@@ -25,6 +25,8 @@
     "dotenv": "^16.0.2",
     "firebase": "^9.9.2",
     "framer-motion": "^7.2.1",
+    "html-to-image": "^1.10.8",
+    "jspdf": "^2.5.1",
     "next": "12.2.5",
     "next-http-proxy-middleware": "^1.2.4",
     "react": "18.2.0",
