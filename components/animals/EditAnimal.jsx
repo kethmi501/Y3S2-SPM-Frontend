@@ -68,15 +68,18 @@ const AddAnimal = () => {
       familyOfAnimal,
       genusOfAnimal,
       speciesOfAnimal,
-      imageArray : imageArray.map((image , index) => {
+      imageArray: imageArray.map((image, index) => {
         return {
-          url : image,
-          index : index
+          url: image,
+          index: index,
         }
       }),
     }).then(async message => {
       toast.success(message.toString())
-      await router.push('/animals/animalslist')
+      await router.push({
+        pathname: '/animals/singleanimalentity',
+        query: { id: id },
+      })
     }).catch(err => {
       toast.error(err)
     })
@@ -91,7 +94,7 @@ const AddAnimal = () => {
   }
 
   const handleImageUpload = async (file) => {
-    return await uploadFile(file , 'animals')
+    return await uploadFile(file, 'animals')
   }
 
 

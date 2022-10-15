@@ -8,6 +8,13 @@ import { HiArrowSmUp, HiArrowSmDown } from 'react-icons/hi'
 import AnimalImageList from './AnimalImageList'
 import { deleteAnimal } from '../../Api/animal'
 import { useRouter } from 'next/router'
+// import GenerateButton from '../GeneratePDF/GenereateButton'
+import dynamic from 'next/dynamic'
+
+const GenerateButton = dynamic(() => import('../GeneratePDF/GenereateButton'), {
+  ssr: false,
+})
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -50,14 +57,19 @@ const AnimalEntity = ({ animalData }) => {
     })
   }
 
+  const ref = React.useRef()
 
   return (
-    <div className='px-4 py-8 sm:px-6 sm:py-12 md:px-8 md:py-16 lg:px-10 lg:py-20 bg-white'>
+    <div ref={ref} id={'report'} className='px-4 py-8 sm:px-6 sm:py-12 md:px-8 md:py-16 lg:px-10 lg:py-20 bg-white'>
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-4'>
-        {animalData && animalData.imageArray && <Image priority={true}
-                                                       src={animalData.imageArray[0].url}
-                                                       width={400} height={540}
-                                                       className='rows-span-2 md:cols-span-1 object-cover rounded-lg shadow-lg' />}
+        {animalData && animalData.imageArray &&
+          <Image
+            id={'animalImage'}
+            priority={true}
+            src={animalData.imageArray[0].url}
+            width={400} height={540}
+            className='rows-span-2 md:cols-span-1 object-cover rounded-lg shadow-lg' />
+        }
         <div className='flex flex-col gap-6'>
           <div className='flex flex-row justify-between'>
             <div className='flex flex-col gap-0.5 items-center'>
@@ -75,11 +87,7 @@ const AnimalEntity = ({ animalData }) => {
                 <GiUpgrade className='text-gray-800' />
                 Enhance
               </button>
-              <button type='button'
-                      className='inline-flex gap-2 items-center px-4 py-2 bg-blue-400 hover:bg-blue-300 border border-blue-400 font-semibold text-gray-800 capitalize rounded-lg shadow-md focus:ring-2 focus:ring-offset-1 focus:ring-blue-400'>
-                <TiExport className='text-gray-800' />
-                Export Report
-              </button>
+              <GenerateButton html={ref} />
             </div>
           </div>
           <div className='px-3 py-6 border-2 border-gray-900 bg-green-50'>
