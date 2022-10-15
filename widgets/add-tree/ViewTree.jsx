@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import { useRouter } from 'next/router'
-// import Carousel from '../../components/AddTree/banner/Carousel'
+
 import { getOneUpdate } from '../../Api/tree'
 
 const ViewTree = () => {
@@ -17,7 +17,6 @@ const ViewTree = () => {
       setData(response)
     }
     getOneTree()
-    console.log(data)
   }, [postId])
 
   return (
