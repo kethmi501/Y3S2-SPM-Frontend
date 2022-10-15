@@ -3,10 +3,11 @@ import React from 'react'
 import TabGroup from '../../components/treeTabs/TabGroup'
 import { TabMenuLocations } from '../../const/tabMenuLocation'
 import ViewLocation from '../../widgets/location/ViewLocation'
+import BasicPageWrapper from '../../components/layouts/BasicPageWrapper'
 
 const location = () => {
   return (
-    <div className="h-screen relative">
+    <BasicPageWrapper >
       {/* <Player
         autoplay
         loop
@@ -26,7 +27,7 @@ const location = () => {
           <ViewLocation />
         </div>
       </div>
-    </div>
+    </BasicPageWrapper>
   )
 }
 
