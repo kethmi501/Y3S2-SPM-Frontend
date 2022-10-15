@@ -77,7 +77,12 @@ const Search = () => {
 
         <ul role='list' className='m-3 grid grid-cols-1 gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4'>
           {treeResults.map((singleTree) => (
-            <li key={singleTree._id} className='col-span-1 flex shadow-sm rounded-md'>
+            <li
+              onClick={() => router.push({
+                pathname: '/trees/tree',
+                query: { postId: singleTree._id },
+              })}
+              key={singleTree._id} className='col-span-1 flex shadow-sm rounded-md'>
               <div
                 className={classNames(
                   'bg-sky-400',

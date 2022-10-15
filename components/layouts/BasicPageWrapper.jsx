@@ -6,15 +6,16 @@ import { FaDog } from 'react-icons/fa'
 import { GiTrophyCup } from 'react-icons/gi'
 import { BsTreeFill } from 'react-icons/bs'
 import { ImLocation } from 'react-icons/im'
+import { useSelector } from 'react-redux'
 
 const navigationX = [
   { name: 'Leaderboard', href: '/', icon: GiTrophyCup, current: false },
   { name: 'Animals', href: '/animals', icon: FaDog, current: false },
-  { name: 'Trees  ', href: '/trees', icon: BsTreeFill, current: false },
+  { name: 'Trees  ', href: '/trees/view-trees', icon: BsTreeFill, current: false },
   { name: 'Locations', href: '/locations', icon: ImLocation, current: false },
 ]
 const userNavigation = [
-  { name: 'Sign out', href: '#' },
+  { name: 'Sign out', href: '/auth' },
 ]
 
 function classNames(...classes) {
@@ -47,7 +48,7 @@ const BasicPageWrapper = ({ children }) => {
         setNavigation(navigationX.map((item) => {
           return {
             ...item,
-            current: item.href.includes(router.pathname) ,
+            current: item.href.includes(router.pathname),
           }
         }))
       } else {
@@ -70,6 +71,12 @@ const BasicPageWrapper = ({ children }) => {
     ,
     [router.pathname],
   )
+
+  const [profilePic, setProfilePic] = useState('')
+  const user = useSelector((state) => state.auth)
+  useEffect(() => {
+    setProfilePic(user.user.photoURL)
+  }, [user, router.pathname])
 
   return (
     <div>
@@ -220,7 +227,7 @@ const BasicPageWrapper = ({ children }) => {
                     <span className='sr-only'>Open user menu</span>
                     <img
                       className='h-8 w-8 rounded-full'
-                      src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
+                      src={profilePic}
                       alt=''
                     />
                   </Menu.Button>
@@ -240,13 +247,20 @@ const BasicPageWrapper = ({ children }) => {
                       <Menu.Item key={item.name}>
                         {({ active }) => (
                           <a
-                            onClick={() => router.push(item.href)}
+                            onClick={async () => {
+                              if (user.isAuthenticated) {
+                                await router.push(item.href)
+                              } else {
+                                await router.push('/auth')
+                              }
+
+                            }}
                             className={classNames(
                               active ? 'bg-gray-100' : '',
                               'block px-4 py-2 text-sm text-gray-700',
                             )}
                           >
-                            {item.name}
+                            {user.isAuthenticated ? item.name : 'Login'}
                           </a>
                         )}
                       </Menu.Item>

@@ -73,13 +73,13 @@ export const deletePost = async (postId) => {
 
 export const getOneUpdate = async (postId) => {
   const data = await axios
-    .delete('/api/getOneUpdate', {
+    .get('/api/getOneUpdate', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
-      data: {
-        postId,
-      },
+      params: {
+        postId
+      }
     })
     .catch((err) => {
       return err
