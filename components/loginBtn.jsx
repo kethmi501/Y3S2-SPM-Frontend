@@ -41,7 +41,7 @@ const LoginBtn = () => {
   }, [router.pathname])
 
 
-  const [district, setDistrict] = useState('')
+  const [district, setDistrict] = useState('Colombo')
   const handleLoginBtnClick = () => {
     signInWithPopup(auth, provider)
       .then((result) => {

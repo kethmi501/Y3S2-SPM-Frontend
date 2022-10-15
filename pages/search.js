@@ -106,7 +106,12 @@ const Search = () => {
 
         <ul role='list' className='m-3 grid grid-cols-1 gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4'>
           {LocationResults.map((singleLocation) => (
-            <li key={singleLocation._id} className='col-span-1 flex shadow-sm rounded-md'>
+            <li
+              onClick={() => router.push({
+                pathname: '/locations/location',
+                query: { locationId: singleLocation._id },
+              })}
+              key={singleLocation._id} className='col-span-1 flex shadow-sm rounded-md'>
               <div
                 className={classNames(
                   'bg-indigo-400',
