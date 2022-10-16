@@ -34,6 +34,7 @@ const AllAnimalsList = () => {
                             </button>
                         </div>
                         <p className="mt-2 block text-sm font-medium text-center text-gray-900 truncate pointer-events-none">{animal.nameInput}</p>
+                        <p className="mt-2 block text-sm font-medium text-center text-gray-900 truncate pointer-events-none">{animal.nameInput}</p>
                     </li>
                 ))}
             </ul>
