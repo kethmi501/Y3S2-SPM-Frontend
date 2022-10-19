@@ -5,13 +5,13 @@ Social Credit System for Eco System Management
 
 ## Group Details
 
-*Member Details:*
-Group Member Name |	Registration Number | Github username 
---- | --- | ---
-IT20021320 |Vidanage K.H | kethmi501
-IT20014940 |W.C.Y.S.Lowe | Flashminat0 & yasas-mintpay (office github)
-IT20228026 | Kithma A.P.O	|	swee76
-IT20016852 | Chathuranga K.G.S | PhenoZiggy (sameera)
+* Member Details: *
+| Group Member Name |	Registration Number || Github username |
+| -- | -- |
+| IT20021320	| Vidanage K.H		|	kethmi501 |
+| IT20014940	| W.C.Y.S.Lowe		|	Flashminat0 & yasas-mintpay (office github) |
+| IT20228026	| Kithma A.P.O		|	swee76 |
+| IT20016852	| Chathuranga K.G.S	|	PhenoZiggy (sameera) |
 
 
 ## Project Description
