@@ -11,7 +11,9 @@ const Report = () => {
   useEffect(() => {
     async function getLocations() {
       let response = await retrieveLocation()
-      setData(response.result)
+      if (response) {
+        setData(response.result)
+      }
     }
     getLocations()
   }, [])

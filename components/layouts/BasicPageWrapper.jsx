@@ -12,7 +12,7 @@ const navigationX = [
   { name: 'Leaderboard', href: '/', icon: GiTrophyCup, current: false },
   { name: 'Animals', href: '/animals', icon: FaDog, current: false },
   { name: 'Trees  ', href: '/trees/view-trees', icon: BsTreeFill, current: false },
-  { name: 'Locations', href: '/locations', icon: ImLocation, current: false },
+  { name: 'Locations', href: '/locations/view-location', icon: ImLocation, current: false },
 ]
 const userNavigation = [
   { name: 'Sign out', href: '/auth' },
