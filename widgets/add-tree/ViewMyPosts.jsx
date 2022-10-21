@@ -50,7 +50,7 @@ const ViewMyPosts = () => {
         <div>
           <button
             onClick={() => deletePostHandler()}
-            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+            className="active:bg-red-500 focus:bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
           >
             Yes
           </button>
@@ -81,7 +81,7 @@ const ViewMyPosts = () => {
                   Update
                 </button>
                 <button
-                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                  className="active:bg-red-500 focus:bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                   onClick={() => {
                     setOpened(true)
                     setPostId(tree._id)
