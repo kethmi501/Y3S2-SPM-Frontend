@@ -15,7 +15,7 @@ const Index = () => {
       .then(res => {
         setTrophies(res)
       })
-    localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzBhMTkzMWE5NzQ1ZWViNzIzMDVkZDQiLCJpYXQiOjE2NjYyNTkwNjUsImV4cCI6MTY2Njg2Mzg2NX0.Q4smHqAnmwyr0_ZdVzqrtK-3R5CiBQtgAxSde2Kpf_4');
+    // localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzBhMTkzMWE5NzQ1ZWViNzIzMDVkZDQiLCJpYXQiOjE2NjYyNTkwNjUsImV4cCI6MTY2Njg2Mzg2NX0.Q4smHqAnmwyr0_ZdVzqrtK-3R5CiBQtgAxSde2Kpf_4');
   },[])
 
   return (
