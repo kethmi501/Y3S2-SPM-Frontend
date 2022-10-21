@@ -29,9 +29,11 @@ const ViewLocations = () => {
   useEffect(() => {
     async function getPosts() {
       let response = await retrieveLocation()
-      setData(response.result)
-      setLoading(false)
-      setUser(response.userId)
+      if (response) {
+        setData(response.result)
+        setLoading(false)
+        setUser(response.userId)
+      }
     }
     getPosts()
   }, [refresh])
