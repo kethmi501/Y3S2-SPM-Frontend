@@ -52,8 +52,8 @@ const AnimalEntity = ({ animalData }) => {
 
 
   const deleteAnimalHandler = () => {
-    deleteAnimal(animalData._id).then(() => {
-      router.push('/animals/animalslist')
+    deleteAnimal(animalData._id).then(async () => {
+      await router.push('/animals/')
     })
   }
 
